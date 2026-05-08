@@ -47,3 +47,10 @@ jobs:
         run: |
           # Use the bucket name defined in infra/main.tf
           aws s3 sync app/frontend/ s3://aws-bucket-ai-agent-pedro --delete
+
+      - name: Print Website URL
+        working-directory: infra
+        run: |
+          FRONTEND_URL=$(terraform output -raw frontend_url)
+          echo "### 🚀 Despliegue Exitoso" >> $GITHUB_STEP_SUMMARY
+          echo "🌐 Puedes ver tu sitio web aquí: **http://$FRONTEND_URL**" >> $GITHUB_STEP_SUMMARY
