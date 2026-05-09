@@ -20,6 +20,11 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
+      - name: Package Lambda
+        run: |
+          cd app/lambda
+          zip -r lambda.zip .
+
       - name: Terraform Init
         working-directory: infra
         run: terraform init
